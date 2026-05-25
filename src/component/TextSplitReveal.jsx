@@ -1,4 +1,3 @@
-// src/components/TextSplitReveal.jsx
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";

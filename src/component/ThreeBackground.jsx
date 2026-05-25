@@ -1,4 +1,3 @@
-// src/components/ThreeBackground.jsx
 "use client";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
