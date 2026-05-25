@@ -1,47 +1,83 @@
 // src/components/ArtifactCard.jsx
 "use client";
 import { useEffect, useRef } from "react";
+import Link from "next/link"; // 1. Import the Link component
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ArtifactCard({ item }) {
   const cardRef = useRef(null);
 
+  let sizeClasses = "col-span-1 row-span-1";
+  if (item.size === "tall") sizeClasses = "col-span-1 row-span-2";
+  if (item.size === "wide") sizeClasses = "md:col-span-2 row-span-1";
+
   useEffect(() => {
-    // Subtle float entry animation using GSAP
+    const el = cardRef.current;
     gsap.fromTo(
-      cardRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+      el,
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      },
     );
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
 
   return (
-    <div
-      ref={cardRef}
-      className="relative p-6 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-xl max-w-sm transition-shadow duration-300 hover:shadow-2xl/30"
-    >
-      <span className="text-xs font-mono uppercase tracking-widest text-emerald-400">
-        📍 {item.geotag || "Unknown Origin"}
-      </span>
+    // 2. Wrap the card in a Link pointing to the dynamic ID path
+    <Link href={`/items/${item.id}`} className={`block ${sizeClasses}`}>
+      <div
+        ref={cardRef}
+        className="group relative w-full h-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900 opacity-0 transition-all duration-500 hover:border-emerald-500/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] cursor-pointer"
+      >
+        <img
+          src={item.image}
+          alt={item.title}
+          className="absolute inset-0 w-full h-full object-cover opacity-60 filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+        />
 
-      <h3 className="mt-2 text-2xl font-bold text-white">{item.title}</h3>
-      <p className="text-sm text-gray-300 mt-1">{item.category}</p>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
-      {/* Conditional rendering for history/patterns */}
-      {item.history ? (
-        <div className="mt-4 pt-4 border-t border-white/10">
-          <h4 className="text-xs font-semibold uppercase text-gray-400">
-            History &amp; Patterns
-          </h4>
-          <p className="text-sm text-gray-200 mt-1 line-clamp-3">
-            {item.history}
-          </p>
+        <div className="absolute inset-x-4 bottom-4 p-5 rounded-xl border border-white/5 bg-slate-900/40 backdrop-blur-md flex flex-col justify-end transition-transform duration-300 group-hover:translate-y-[-4px]">
+          <div className="flex items-center gap-1.5 text-[10px] font-mono tracking-wider uppercase text-emerald-400 mb-1">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            📍 {item.geotag || "Unknown Origin"}
+          </div>
+
+          <span className="text-[11px] text-slate-400 uppercase tracking-widest">
+            {item.category}
+          </span>
+          <h3 className="text-xl font-bold tracking-tight text-white mt-0.5">
+            {item.title}
+          </h3>
+
+          {item.history ? (
+            <div className="mt-2 text-xs text-slate-300 leading-relaxed font-light opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-[120px] transition-all duration-500 ease-in-out">
+              <h4 className="text-[10px] font-mono uppercase text-slate-400 mb-1 border-t border-white/10 pt-2">
+                History &amp; Patterns
+              </h4>
+              <p className="line-clamp-3">{item.history}</p>
+            </div>
+          ) : (
+            <div className="mt-2 text-[11px] text-slate-500 italic font-mono opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-[50px] transition-all duration-500 ease-in-out border-t border-white/5 pt-2">
+              {"//"} Historical record archive empty
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="mt-4 pt-4 border-t border-white/10 italic text-xs text-gray-500">
-          Historical record pending documentation...
-        </div>
-      )}
-    </div>
+      </div>
+    </Link>
   );
 }
