@@ -3,12 +3,25 @@ export const culturalItems = [
     id: 1,
     title: "Kanchipuram Silk Saree",
     category: "Sarees",
-    geotag: "Tamil Nadu, India",
+    geotag: "Kanchipuram, Tamil Nadu, India",
     image:
-      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&auto=format&fit=crop&q=60",
+      "https://media.samyakk.in/pub/media/catalog/product/l/i/light-gold-zari-woven-kanchipuram-tissue-saree-with-unstitched-blouse-and-embroidered-contrast-dupatta-sr27955.jpg",
+    patterns: [
+      "https://media.samyakk.in/pub/media/catalog/product/g/o/gold-zardosi-embroidered-kanchipuram-tissue-designer-saree-with-unstitched-contrast-blouse-sr27842-e.jpg",
+      "https://media.samyakk.in/pub/media/catalog/product/l/i/light-gold-zari-woven-kanchipuram-tissue-saree-with-unstitched-blouse-and-embroidered-contrast-dupatta-sr27955-d.jpg",
+      "https://media.samyakk.in/pub/media/catalog/product/g/o/gold-zardosi-embroidered-kanchipuram-tissue-designer-saree-with-unstitched-contrast-blouse-sr27842.jpg",
+      "https://media.samyakk.in/pub/media/catalog/product/l/i/light-gold-zari-woven-kanchipuram-tissue-saree-with-unstitched-blouse-and-embroidered-contrast-dupatta-sr27955-e.jpg",
+      "https://media.samyakk.in/pub/media/catalog/product/l/i/light-gold-zari-woven-kanchipuram-tissue-saree-with-unstitched-blouse-and-embroidered-contrast-dupatta-sr27955-a.jpg",
+      "https://media.samyakk.in/pub/media/catalog/product/l/i/light-gold-zari-woven-kanchipuram-tissue-saree-with-unstitched-blouse-and-embroidered-contrast-dupatta-sr27955-b.jpg",
+      "https://media.samyakk.in/pub/media/catalog/product/l/i/light-gold-zari-woven-kanchipuram-tissue-saree-with-unstitched-blouse-and-embroidered-contrast-dupatta-sr27955-f.jpg",
+    ],
+    size: "tall",
+    price: "₹ 270,500",
     history:
-      "Famous for its wide contrast borders and woven temple patterns. Handloomed using pure mulberry silk.",
-    size: "tall", // Tall card layout
+      "Tracing its lineage back over 400 years to the Vijayanagara Empire, the Kanchipuram silk sari is celebrated as the 'Queen of Silks.' Woven from pure mulberry silk and heavy gold zari, it features the legendary Korvai interlocking technique where the body, border, and pallu are woven separately and fused with unbreakable strength.",
+    chronicle: `The Kanchipuram silk sari, also called the Kanjeevaram sari, is an exquisite type of silk textile handcrafted in the temple town of Kanchipuram, Tamil Nadu. Officially recognized as a Geographical Indication by the Government of India in 2005–2006, this craft forms the lifeblood of the region, involving thousands of master weaving families.Kanchipuram sarees trace their glorious history back to the Vijayanagara Empire. Under royal patronage, master weavers migrated to the region, marrying exceptional multi-ply mulberry silk stringing with heavy gold-entwined silver threads. These garments represent auspicious sacred geometry, traditionally passed down through South Indian families as highly valued heirloom treasures.`,
+    weaving: `To weave a genuine Kanchipuram sari, master artisans employ three synchronized shuttles. While the main weaver manually commands the center shuttle to construct the core body fabric, an assistant coordinates the side shuttles to materialize the border structures.The defining masterpiece of its engineering is the Korvai technique. The body and the contrasting pallu (hanging end or mundhi) are completely separate woven bodies. They are interlocked line-by-line using structural zigzag joins. This interlocking warp mesh is structurally indestructible; even if the core body silk undergoes stress tears decades later, the interlocking border joints will remain perfectly fused together.`,
+    design: `Kanchipuram saris are visually distinguished by their majestic wide contrast borders. Traditional motifs draw directly from natural elements and the magnificent architectural reliefs found across South Indian stone temples.Weavers meticulously transcribe structural temple spires, checks, stripes, mango leaves (manga), floral coins (buttas), and sacred fauna like swans (hamsam) and peacocks directly into the metallic grid sheets. More intricate custom editions even illustrate narrative paintings inspired by the epics of the Ramayana and Mahabharata.`,
   },
   {
     id: 2,
