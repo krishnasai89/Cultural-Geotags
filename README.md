@@ -54,3 +54,37 @@ A robust `AppContext` wrapper handles client-side caching (`localStorage`) track
 │   └── data/
 │       └── items.js           # Sanitized schema array tracking 51 heritage items
 ```
+
+## 🚀 Local Installation & Execution Checklist
+
+### 1. Clone & Install Dependency Node Stacks
+
+```Bash
+git clone https://github.com/krishnasai89/Cultural-Geotags.git
+cd Cultural-Geotags
+npm install
+```
+
+### 2. Install dependencies
+
+```Bash
+npm install
+# or yarn install / pnpm install
+```
+
+### 3. Start the development server:
+
+```Bash
+
+npm run dev
+```
+
+4. Open http://localhost:3000 inside your browser client to interact with the console terminal.
+
+## 🔐 Administrative Test Credentials
+
+To inspect the structural permission-gated components inside your artifact detail page views, use these mockup authentication credentials inside the Account Portal:
+
+- Admin Console Node Email: admin@geotag.archive
+
+- Access Core Password: admin123
