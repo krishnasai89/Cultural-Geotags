@@ -1,4 +1,3 @@
-// src/components/PatternMatrix.jsx
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -30,7 +29,7 @@ export default function PatternMatrix({ item }) {
                 : "text-slate-500 hover:text-slate-300"
             }`}
           >
-            {"//"} {tab}
+            {tab}
           </button>
         ))}
       </div>

@@ -8,7 +8,6 @@ export default function TextSplitReveal({ text }) {
   useEffect(() => {
     const el = containerRef.current;
 
-    // Select all the character spans we created below
     const chars = el.querySelectorAll(".char");
 
     gsap.fromTo(
@@ -22,7 +21,7 @@ export default function TextSplitReveal({ text }) {
         opacity: 1,
         duration: 1,
         ease: "expo.out",
-        stagger: 0.03, // The "secret sauce" for the letter-by-letter look
+        stagger: 0.03,
         delay: 0.2,
       },
     );

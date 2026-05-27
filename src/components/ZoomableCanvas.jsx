@@ -1,4 +1,3 @@
-// src/components/ZoomableCanvas.jsx
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
@@ -12,7 +11,6 @@ export default function ZoomableCanvas({ src, alt, geotag }) {
     const nextZoomState = !isZoomed;
     setIsZoomed(nextZoomState);
 
-    // If zooming out, reset image placement immediately back to origin coordinates
     if (!nextZoomState) {
       gsap.to(imgRef.current, {
         scale: 1,
@@ -31,19 +29,17 @@ export default function ZoomableCanvas({ src, alt, geotag }) {
     const img = imgRef.current;
     const { left, top, width, height } = container.getBoundingClientRect();
 
-    // Determine percentage placement relative to center coordinates
     const mouseX = (e.clientX - left) / width;
     const mouseY = (e.clientY - top) / height;
 
-    // Calculate maximum pan offsets (Based on a 2x zoom dimension threshold)
     const moveX = (mouseX - 0.5) * -width;
     const moveY = (mouseY - 0.5) * -height;
 
     gsap.to(img, {
-      scale: 2, // 200% scaling index for deep textile diagnostics
+      scale: 2,
       x: moveX,
       y: moveY,
-      duration: 0.2, // Tiny inertia lag to simulate weight
+      duration: 0.2,
       ease: "power2.out",
     });
   };
@@ -53,7 +49,7 @@ export default function ZoomableCanvas({ src, alt, geotag }) {
       ref={containerRef}
       onClick={handleToggleZoom}
       onMouseMove={handleMouseMove}
-      onMouseLeave={() => isZoomed && handleToggleZoom()} // Auto-safeguard reset on exit
+      onMouseLeave={() => isZoomed && handleToggleZoom()}
       data-hover
       className={`flex-1 relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900 h-full shadow-2xl transition-all duration-300 ${
         isZoomed ? "cursor-zoom-out border-emerald-500/30" : "cursor-zoom-in"
@@ -66,7 +62,6 @@ export default function ZoomableCanvas({ src, alt, geotag }) {
         className="w-full h-full object-cover will-change-transform origin-center"
       />
 
-      {/* Absolute Badges */}
       <div className="absolute top-3 left-3 z-20 px-2.5 py-1.5 rounded-lg border border-white/10 bg-slate-950/70 backdrop-blur-md text-[9px] font-mono tracking-wider uppercase text-emerald-400 pointer-events-none">
         📍 {geotag}
       </div>

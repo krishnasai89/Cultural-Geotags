@@ -13,7 +13,6 @@ export default function ParallaxImage({ src, alt }) {
     const container = containerRef.current;
     const img = imageRef.current;
 
-    // Animate the image position from top to bottom based on scroll progress
     gsap.fromTo(
       img,
       { yPercent: -10 },
@@ -22,9 +21,9 @@ export default function ParallaxImage({ src, alt }) {
         ease: "none",
         scrollTrigger: {
           trigger: container,
-          start: "top bottom", // Starts when the container enters the bottom of the screen
-          end: "bottom top", // Ends when the container leaves the top of the screen
-          scrub: true, // Smoothly links the animation to the scrollbar movement
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
         },
       },
     );
@@ -43,7 +42,6 @@ export default function ParallaxImage({ src, alt }) {
         ref={imageRef}
         src={src}
         alt={alt}
-        // scale-120 gives the image extra room to move inside the hidden wrapper boundaries
         className="w-full h-[120%] object-cover absolute top-0 left-0 scale-120 will-change-transform"
       />
     </div>

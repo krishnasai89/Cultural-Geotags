@@ -10,18 +10,15 @@ export default function CustomCursor() {
     const dot = dotRef.current;
     const ring = ringRef.current;
 
-    // Set initial off-screen positions to avoid sudden pop-ins
     gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
 
     const moveCursor = (e) => {
-      // The inner dot moves instantly with zero lag
       gsap.to(dot, {
         x: e.clientX,
         y: e.clientY,
         duration: 0,
       });
 
-      // The outer ring trails behind with a smooth elastic duration
       gsap.to(ring, {
         x: e.clientX,
         y: e.clientY,
@@ -30,16 +27,15 @@ export default function CustomCursor() {
       });
     };
 
-    // Hover effect functions
     const onHoverEnter = () => {
       gsap.to(ring, {
         scale: 2.5,
-        backgroundColor: "rgba(52, 211, 153, 0.1)", // alpha emerald-400
+        backgroundColor: "rgba(52, 211, 153, 0.1)",
         borderColor: "#34d399",
         duration: 0.3,
       });
       gsap.to(dot, {
-        scale: 0, // hide dot while ring expands
+        scale: 0,
         duration: 0.2,
       });
     };
@@ -57,12 +53,8 @@ export default function CustomCursor() {
       });
     };
 
-    // Attach global mouse movement tracking
     window.addEventListener("mousemove", moveCursor);
-
-    // Dynamic listener helper for custom interactive hovers
     const attachHoverListeners = () => {
-      // Targets standard links, buttons, and custom attribute tags
       const interactiveElements = document.querySelectorAll(
         "a, button, [data-hover]",
       );
@@ -72,10 +64,8 @@ export default function CustomCursor() {
       });
     };
 
-    // Run listeners immediately and watch out for framework routing changes
     attachHoverListeners();
 
-    // Setup an observer to catch newly mounted structural components
     const observer = new MutationObserver(attachHoverListeners);
     observer.observe(document.body, { childList: true, subtree: true });
 
@@ -87,7 +77,6 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Hidden completely on mobile touch interfaces via tailwind hidden md:block */}
       <div
         ref={dotRef}
         className="fixed top-7 left-7 w-4 h-4 bg-emerald-400 rounded-full pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2"

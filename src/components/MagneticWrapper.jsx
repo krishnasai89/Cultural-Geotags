@@ -13,15 +13,12 @@ export default function MagneticWrapper({ children }) {
       const { clientX, clientY } = e;
       const { left, top, width, height } = el.getBoundingClientRect();
 
-      // Calculate the absolute center coordinates of the button
       const centerX = left + width / 2;
       const centerY = top + height / 2;
 
-      // Calculate distance between mouse pointer and element center
       const distanceX = clientX - centerX;
       const distanceY = clientY - centerY;
 
-      // Move the element slightly toward the mouse (using 0.35 multiplier to scale intensity)
       gsap.to(el, {
         x: distanceX * 0.35,
         y: distanceY * 0.35,
@@ -31,7 +28,6 @@ export default function MagneticWrapper({ children }) {
     };
 
     const handleMouseLeave = () => {
-      // Snap the button cleanly back to its baseline position when the mouse moves away
       gsap.to(el, {
         x: 0,
         y: 0,
@@ -50,7 +46,6 @@ export default function MagneticWrapper({ children }) {
   }, []);
 
   return (
-    // We add inline-block to prevent the magnetic bounding box from taking up 100% width
     <div ref={magneticRef} className="inline-block">
       {children}
     </div>

@@ -10,7 +10,6 @@ export default function TextRevealHeader() {
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-    // Step-by-step reveal timeline
     tl.to(".reveal-line", {
       y: 0,
       duration: 1.2,
@@ -19,7 +18,7 @@ export default function TextRevealHeader() {
       subRef.current,
       { opacity: 0, y: 15 },
       { opacity: 1, y: 0, duration: 0.8 },
-      "-=0.6", // Overlaps slightly with the title animation for smoothness
+      "-=0.6",
     );
   }, []);
 
@@ -36,8 +35,6 @@ export default function TextRevealHeader() {
           Cultural Archive Engine v1.0
         </span>
       </div>
-
-      {/* Title with hidden overflow masking lines */}
       <h1
         ref={titleRef}
         className="text-5xl md:text-7xl font-black tracking-tighter uppercase flex flex-col gap-1"

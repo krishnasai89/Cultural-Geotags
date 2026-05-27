@@ -1,7 +1,10 @@
-import CustomCursor from "@/component/CustomCursor";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
-import Navbar from "@/component/Navbar";
-import Footer from "@/component/Footer";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import CartDrawer from "@/components/CartDrawer";
+import { AppProvider } from "@/context/AppContext";
+import Preloader from "@/components/Preloader";
 
 export const metadata = {
   title: "Cultural Geotag Archive",
@@ -13,15 +16,13 @@ export default function RootLayout({ children }) {
     <html lang="en" className="scroll-smooth">
       <body className="antialiased bg-slate-950 text-white min-h-screen flex flex-col justify-between">
         <CustomCursor />
-
-        {/* Mounted global header floating frame */}
-        <Navbar />
-
-        {/* Main layout contents */}
-        <div className="flex-grow">{children}</div>
-
-        {/* Mounted global base layout footer */}
-        <Footer />
+        <AppProvider>
+          <Preloader />
+          <Navbar />
+          <CartDrawer />
+          <div className="flex-grow">{children}</div>
+          <Footer />
+        </AppProvider>
       </body>
     </html>
   );

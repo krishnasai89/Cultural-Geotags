@@ -19,7 +19,7 @@ export default function Footer() {
         {/* System telemetry metadata */}
         <div className="flex flex-col gap-1">
           <span className="text-slate-400 uppercase tracking-wider mb-1">
-            {"//"} Telemetry Metrics
+            Telemetry Metrics
           </span>
           <div>
             CORE ENG:{" "}

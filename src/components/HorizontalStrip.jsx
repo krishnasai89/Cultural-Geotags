@@ -1,4 +1,3 @@
-// src/components/HorizontalStrip.jsx
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
@@ -16,7 +15,6 @@ export default function HorizontalStrip({ patterns = [] }) {
     const container = containerRef.current;
     const scrollSection = scrollSectionRef.current;
 
-    // Calculate total horizontal width to translate
     const scrollAmount = scrollSection.scrollWidth - window.innerWidth;
 
     if (scrollAmount > 0) {
@@ -28,11 +26,11 @@ export default function HorizontalStrip({ patterns = [] }) {
           ease: "none",
           scrollTrigger: {
             trigger: container,
-            start: "top top", // Pins the section to the top of the viewport
-            end: `+=${scrollAmount}`, // Animation duration matches scroll width distance
-            pin: true, // Freezes vertical scrolling during translation
-            scrub: 1, // Adds a smooth 1-second delay catchup to mousewheels
-            invalidateOnRefresh: true, // Recalculates dimensions dynamically on resize
+            start: "top top",
+            end: `+=${scrollAmount}`,
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
           },
         },
       );
@@ -51,12 +49,9 @@ export default function HorizontalStrip({ patterns = [] }) {
       className="w-full bg-slate-950/20 overflow-hidden my-24"
     >
       <div className="h-screen w-full flex flex-col justify-center">
-        {/* Component Header Labels */}
         <div className="max-w-5xl mx-auto w-full px-6 md:px-12 mb-8 font-mono text-xs text-slate-500 uppercase tracking-widest">
-          <span>{"//"} Close-up Pattern Texture Diagnostics</span>
+          <span> Close-up Pattern Texture Diagnostics</span>
         </div>
-
-        {/* Sliding Horizontal Rail */}
         <div ref={scrollSectionRef} className="flex gap-12 px-6 md:px-12 w-max">
           {patterns.map((url, idx) => (
             <div
