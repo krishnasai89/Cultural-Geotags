@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import Link from "next/link"; // 1. Import the Link component
+import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -15,39 +15,43 @@ export default function ArtifactCard({ item }) {
 
   useEffect(() => {
     const el = cardRef.current;
-    gsap.fromTo(
-      el,
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
+    if (!el) return;
+
+    const trigger = ScrollTrigger.create({
+      trigger: el,
+      start: "top 95%",
+      toggleActions: "play none none none",
+      onEnter: () => {
+        if (gsap.getProperty(el, "opacity") === 0) {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power3.out",
+          });
+        }
       },
-    );
+    });
+
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      trigger.kill();
     };
-  }, []);
+  }, [item]);
 
   return (
-    // 2. Wrap the card in a Link pointing to the dynamic ID path
-    <Link href={`/items/${item.id}`} className={`block ${sizeClasses}`}>
+    <Link
+      href={`/item/${item.id}`}
+      className={`block h-full w-full ${sizeClasses}`}
+    >
       <div
         ref={cardRef}
-        className="group relative w-full h-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900 opacity-0 transition-all duration-500 hover:border-emerald-500/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] cursor-pointer"
+        className="group relative w-full h-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900/30 opacity-0 transform translate-y-[25px] transition-all duration-500 hover:border-emerald-500/50 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)] cursor-pointer"
       >
         <img
           src={item.image}
           alt={item.title}
           className="absolute inset-0 w-full h-full object-cover opacity-60 filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
         />
-
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
         <div className="absolute inset-x-4 bottom-4 p-5 rounded-xl border border-white/5 bg-slate-900/40 backdrop-blur-md flex flex-col justify-end transition-transform duration-300 group-hover:translate-y-[-4px]">
@@ -55,7 +59,6 @@ export default function ArtifactCard({ item }) {
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             📍 {item.geotag || "Unknown Origin"}
           </div>
-
           <span className="text-[11px] text-slate-400 uppercase tracking-widest">
             {item.category}
           </span>
@@ -72,7 +75,7 @@ export default function ArtifactCard({ item }) {
             </div>
           ) : (
             <div className="mt-2 text-[11px] text-slate-500 italic font-mono opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-[50px] transition-all duration-500 ease-in-out border-t border-white/5 pt-2">
-              {"//"} Historical record archive empty
+              Historical record archive empty
             </div>
           )}
         </div>

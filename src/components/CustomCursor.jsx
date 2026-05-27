@@ -1,3 +1,4 @@
+// src/components/CustomCursor.jsx
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
@@ -90,11 +91,11 @@ export default function CustomCursor() {
       {/* Hidden completely on mobile touch interfaces via tailwind hidden md:block */}
       <div
         ref={dotRef}
-        className="fixed top-1/12 left-1/12 w-4 h-4 bg-emerald-400 rounded-full pointer-events-none z-[99999] -translate-x-1/12 -translate-y-1/12"
+        className="fixed top-12 left-12 w-4 h-4 bg-emerald-400 rounded-full pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2"
       />
       <div
         ref={ringRef}
-        className="fixed top-1/12 left-1/12 w-10 h-10 border-2 border-emerald-400 rounded-full pointer-events-none z-[99998] -translate-x-1/12 -translate-y-1/12"
+        className="fixed top-12 left-12 w-10 h-10 border-2 border-emerald-400 rounded-full pointer-events-none z-[99998] -translate-x-1/2 -translate-y-1/2"
       />
     </>
   );
